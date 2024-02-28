@@ -42,14 +42,31 @@ cd && ./klippy-env/bin/pip install requests PyYAML RPi.GPIO rpi_ws281x adafruit-
 git clone https://github.com/11chrisadams11/Klipper-WS281x_LED_Status.git && \
 chmod 744 ./Klipper-WS281x_LED_Status/klipper_ledstrip.py
 ```
-Edit */boot/firmware/cmdline.txt*:
+  5.1 Enable the SPI communication by running `sudo raspi-config`. In the menu, select "3 Interface Options", then "I3 SPI" and set "Yes".
+  5.2 Edit */boot/firmware/cmdline.txt*:
 ```sh
 spidev.bufsiz=32768
 ```
-Then */boot/firmware/config.txt*:
+  5.3 Then */boot/firmware/config.txt*:
 ```sh
 core_freq=500
 core_freq_min=500
+```
+
+6. Set the host as a secondary MCU:
+```sh
+cd ~/klipper/ && \
+sudo cp ./scripts/klipper-mcu.service /etc/systemd/system/
+sudo systemctl enable klipper-mcu.service
+make menuconfig
+```
+   6.1 In the menu, set "Microcontroller Architecture" to "Linux process," then save and exit.
+   6.2 To build and install the new micro-controller code, run:
+```sh
+sudo usermod -a -G tty pi
+sudo service klipper stop
+make flash
+sudo service klipper start
 ```
 
 [KIAUH]: https://github.com/dw-0/kiauh
