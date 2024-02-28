@@ -41,8 +41,12 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
    chmod +x ./klipper-backup/script.sh && \
    cp ./klipper-backup/.env.example ./klipper-backup/.env
    ```
+   Then modify `.env` file such as:
+   * Set `github_token` with a fine-grained token generated at https://github.com/settings/tokens?type=beta.
+   * `github_username=alekece`
+   * `github_repository=ender3pro`
 
-6. Install [Klipper-WS281x_LED_Status]:
+7. Install [Klipper-WS281x_LED_Status]:
    ```sh
    cd && ./klippy-env/bin/pip install requests PyYAML RPi.GPIO rpi_ws281x adafruit-circuitpython-neopixel && \
    git clone https://github.com/11chrisadams11/Klipper-WS281x_LED_Status.git && \
@@ -59,7 +63,7 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
    core_freq_min=500
    ```
 
-7. Set the host as a secondary MCU:
+8. Set the host as a secondary MCU:
    ```sh
    cd ~/klipper/ && \
    sudo cp ./scripts/klipper-mcu.service /etc/systemd/system/
@@ -75,7 +79,7 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
    sudo service klipper start
    ```
    
-8. Install this repository:
+9. Install this repository:
    ```sh
    cd && git clone https://github.com/alekece/ender3pro.git && \
    cp ender3pro/printer_data/config/* printer_data/config && \
