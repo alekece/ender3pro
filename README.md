@@ -7,10 +7,9 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
 1. Install [KIAUH]:
    ```sh
    sudo apt update && sudo apt-get install git -y && \
-   cd && git clone https://github.com/dw-0/kiauh.git && \
-   # Install Klipper, Moonraker, Fluidd, PrettyGCode, Obico, Crowsnest and G-Code Shell Command
-   ./kiauh/kiauh.sh
+   cd && git clone https://github.com/dw-0/kiauh.git
    ```
+   Then install [Klipper], [Moonraker], [Fluidd], [PrettyGCode], [Obico], [Crowsnest] and [G-Code Shell Command] by running `./kiauh/kiauh.sh`
 
 2. Install [Spoolman]:
    ```sh
