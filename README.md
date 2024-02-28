@@ -80,7 +80,7 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
    cd && git clone https://github.com/alekece/ender3pro.git && \
    cp ender3pro/printer_data/config/* printer_data/config && \
    cp ender3pro/spoolman/* .local/share/spoolman && \
-   cp ender3pro/klipper-backup-on-boot /etc/systemd/system && \
+   cp ender3pro/klipper-backup-on-boot.service /etc/systemd/system && \
    sudo systemctl daemon-reload && \
    sudo systemctl enable klipper-backup-on-boot.service && \
    sudo systemctl start klipper-backup-on-boot.service
