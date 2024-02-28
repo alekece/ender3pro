@@ -34,12 +34,19 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
    cd ~/moonraker-timelapse && \
    make install
    ```
+   
+5. Install [Klipper-Backup]:
+   ```sh
+   cd && git clone https://github.com/Staubgeborener/klipper-backup.git && \
+   chmod +x ./klipper-backup/script.sh && \
+   cp ./klipper-backup/.env.example ./klipper-backup/.env && \
+   ```
 
-5. Install [Klipper-WS281x_LED_Status]:
+6. Install [Klipper-WS281x_LED_Status]:
    ```sh
    cd && ./klippy-env/bin/pip install requests PyYAML RPi.GPIO rpi_ws281x adafruit-circuitpython-neopixel && \
    git clone https://github.com/11chrisadams11/Klipper-WS281x_LED_Status.git && \
-   chmod 744 ./Klipper-WS281x_LED_Status/klipper_ledstrip.py
+   chmod +x ./Klipper-WS281x_LED_Status/klipper_ledstrip.py
    ```
    Enable the SPI communication by running `sudo raspi-config`. In the menu, select "3 Interface Options", then "I3 SPI" and set "Yes".  
    Edit */boot/firmware/cmdline.txt*:
@@ -52,7 +59,7 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
    core_freq_min=500
    ```
 
-6. Set the host as a secondary MCU:
+7. Set the host as a secondary MCU:
    ```sh
    cd ~/klipper/ && \
    sudo cp ./scripts/klipper-mcu.service /etc/systemd/system/
@@ -68,11 +75,15 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
    sudo service klipper start
    ```
    
-7. Install this repository:
+8. Install this repository:
    ```sh
    cd && git clone https://github.com/alekece/ender3pro.git && \
    cp ender3pro/printer_data/config/* printer_data/config && \
-   cp ender3pro/spoolman/* .local/share/spoolman
+   cp ender3pro/spoolman/* .local/share/spoolman && \
+   cp ender3pro/klipper-backup-on-boot /etc/systemd/system && \
+   sudo systemctl daemon-reload && \
+   sudo systemctl enable klipper-backup-on-boot.service && \
+   sudo systemctl start klipper-backup-on-boot.service
    ```
 
 [KIAUH]: https://github.com/dw-0/kiauh
@@ -87,3 +98,4 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
 [KAMP]: https://github.com/kyleisah/Klipper-Adaptive-Meshing-Purging
 [Moonraker-Timelapse]: https://github.com/mainsail-crew/moonraker-timelapse
 [Klipper-WS281x_LED_Status]: https://github.com/11chrisadams11/Klipper-WS281x_LED_Status
+[Klipper-Backup]: https://github.com/Staubgeborener/klipper-backup
