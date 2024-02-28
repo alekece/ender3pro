@@ -39,7 +39,7 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
    ```sh
    cd && git clone https://github.com/Staubgeborener/klipper-backup.git && \
    chmod +x ./klipper-backup/script.sh && \
-   cp ./klipper-backup/.env.example ./klipper-backup/.env && \
+   cp ./klipper-backup/.env.example ./klipper-backup/.env
    ```
 
 6. Install [Klipper-WS281x_LED_Status]:
