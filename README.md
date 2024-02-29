@@ -109,7 +109,8 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
 8. Install [Klipper-DHT]:
    ```sh
    cd && git clone https://github.com/alekece/klipper-dht.git && \
-   cp klipper-dht/klipper-dht.service /etc/systemd/system && \
+   ~/klippy-env/bin/pip install adafruit-circuitpython-dht && \
+   sudo cp klipper-dht/klipper-dht.service /etc/systemd/system && \
    sudo systemctl daemon-reload && \
    sudo systemctl enable klipper-dht.service && \
    sudo systemctl start klipper-dht.service
