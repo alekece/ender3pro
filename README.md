@@ -62,6 +62,7 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
    ```sh
    core_freq=500
    core_freq_min=500
+   dtoverlay=gpio-shutdown
    ```
 
 8. Set the host as a secondary MCU:
