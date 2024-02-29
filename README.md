@@ -87,8 +87,7 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
 9. Install this repository:
    ```sh
    cd && git clone https://github.com/alekece/ender3pro.git && \
-   cp ender3pro/printer_data/config/* printer_data/config && \
-   cp ender3pro/.local/share/spoolman/spoolman.db .local/share/spoolman
+   cd ender3pro && cp -r !(README.md) ~/
    ```
 
 [KIAUH]: https://github.com/dw-0/kiauh
