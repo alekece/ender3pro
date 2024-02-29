@@ -88,7 +88,7 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
    sudo systemctl enable klipper-backup-on-boot.service
    ```
    
-7. Install [Klipper-WS281x_LED_Status]:
+6. Install [Klipper-WS281x_LED_Status]:
    ```sh
    cd && ./klippy-env/bin/pip install requests PyYAML RPi.GPIO rpi_ws281x adafruit-circuitpython-neopixel && \
    git clone https://github.com/11chrisadams11/Klipper-WS281x_LED_Status.git && \
@@ -106,7 +106,7 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
    dtoverlay=gpio-shutdown
    ```
    
-8. Install [Klipper-DHT]:
+7. Install [Klipper-DHT]:
    ```sh
    cd && git clone https://github.com/alekece/klipper-dht.git && \
    ~/klippy-env/bin/pip install adafruit-circuitpython-dht && \
@@ -116,7 +116,7 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
    sudo systemctl start klipper-dht.service
    ```
 
-9. Set the host as a secondary MCU:
+8. Set the host as a secondary MCU:
    ```sh
    cd ~/klipper/ && \
    sudo cp ./scripts/klipper-mcu.service /etc/systemd/system/
@@ -132,13 +132,13 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
    sudo service klipper start
    ```
    
-10. Install this repository:
+9. Install this repository:
    ```sh
    cd && git clone https://github.com/alekece/ender3pro.git && \
    cd ender3pro && cp -r !(README.md) ~/
    ```
 
-11. Allow [Klipper] to perform host shutdown, run `sudo visudo` then append:
+10. Allow [Klipper] to perform host shutdown, run `sudo visudo` then append:
     ```sh
     pi ALL=(ALL) NOPASSWD: /sbin/poweroff, /sbin/reboot, /sbin/shutdown
     ```
