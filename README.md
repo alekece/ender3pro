@@ -87,7 +87,7 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
    sudo systemctl daemon-reload
    sudo systemctl enable klipper-backup-on-boot.service
    ```
-
+   
 7. Install [Klipper-WS281x_LED_Status]:
    ```sh
    cd && ./klippy-env/bin/pip install requests PyYAML RPi.GPIO rpi_ws281x adafruit-circuitpython-neopixel && \
@@ -105,8 +105,17 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
    core_freq_min=500
    dtoverlay=gpio-shutdown
    ```
+   
+8. Install [Klipper-DHT]:
+   ```sh
+   cd && git clone https://github.com/alekece/klipper-dht.git && \
+   cp klipper-dht/klipper-dht.service /etc/systemd/system && \
+   sudo systemctl daemon-reload && \
+   sudo systemctl enable klipper-dht.service && \
+   sudo systemctl start klipper-dht.service
+   ```
 
-8. Set the host as a secondary MCU:
+9. Set the host as a secondary MCU:
    ```sh
    cd ~/klipper/ && \
    sudo cp ./scripts/klipper-mcu.service /etc/systemd/system/
@@ -122,7 +131,7 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
    sudo service klipper start
    ```
    
-9. Install this repository:
+10. Install this repository:
    ```sh
    cd && git clone https://github.com/alekece/ender3pro.git && \
    cd ender3pro && cp -r !(README.md) ~/
@@ -141,3 +150,4 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
 [Moonraker-Timelapse]: https://github.com/mainsail-crew/moonraker-timelapse
 [Klipper-WS281x_LED_Status]: https://github.com/11chrisadams11/Klipper-WS281x_LED_Status
 [Klipper-Backup]: https://github.com/Staubgeborener/klipper-backup
+[Klipper-DHT]: https://github.com/alekece/klipper-dht
