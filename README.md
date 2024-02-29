@@ -39,9 +39,35 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
 5. Install [Klipper-Backup]:
    ```sh
    cd && git clone https://github.com/Staubgeborener/klipper-backup.git && \
-   chmod +x ./klipper-backup/script.sh
+   chmod +x ./klipper-backup/script.sh && \
+   cp ./klipper-backup/.env.example ./klipper-backup/.env
    ```
-   Create `/etc/systemd/system/klipper-backup-on-boot.service` with the following content:
+   Replace *.env* content by:
+   ```sh
+   github_token=<token>
+   github_username=alekece
+   github_repository=ender3pro
+   branch_name=main
+   commit_username="pi"
+   commit_email="alexis.leprovost@outlook.com"
+   
+   path_klipperconfig=printer_data/config/*
+   path_klipperdatabase=printer_data/database/data.mdb
+   path_klipperledstrip=Klipper-WS281x_LED_Status/settings.conf
+   path_spoolman=.local/share/spoolman/spoolman.db
+   
+   exclude=( \
+   "*.swp" \
+   "*.tmp" \
+   "printer-[0-9]*_[0-9]*.cfg" \
+   "*.bak" \
+   "*.bkp" \
+   "*.csv" \
+   "*.zip" \
+   )
+   ```
+   Do not forget to set the `github_token` value with fine-grained token at https://github.com/settings/tokens?type=beta.  
+   Create */etc/systemd/system/klipper-backup-on-boot.service* file:
    ```sh
    [Unit]
    Description=Klipper Backup On-boot Service
