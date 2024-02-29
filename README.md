@@ -46,6 +46,9 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
    * Set `github_token` with a fine-grained token generated at https://github.com/settings/tokens?type=beta.
    * `github_username=alekece`
    * `github_repository=ender3pro`
+   * `commit_username=pi`
+   * `path_klipperdata=printer_data/config/*`
+   * `path_spoolman=.local/share/spoolman/spoolman.db`
 
 7. Install [Klipper-WS281x_LED_Status]:
    ```sh
@@ -85,11 +88,7 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
    ```sh
    cd && git clone https://github.com/alekece/ender3pro.git && \
    cp ender3pro/printer_data/config/* printer_data/config && \
-   cp ender3pro/spoolman.db .local/share/spoolman && \
-   sudo cp ender3pro/klipper-backup-on-boot.service /etc/systemd/system && \
-   sudo systemctl daemon-reload && \
-   sudo systemctl enable klipper-backup-on-boot.service && \
-   sudo systemctl start klipper-backup-on-boot.service
+   cp ender3pro/.local/share/spoolman/spoolman.db .local/share/spoolman
    ```
 
 [KIAUH]: https://github.com/dw-0/kiauh
