@@ -138,6 +138,11 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
    cd ender3pro && cp -r !(README.md) ~/
    ```
 
+11. Allow [Klipper] to perform host shutdown, run `sudo visudo` then append:
+    ```sh
+    pi ALL=(ALL) NOPASSWD: /sbin/poweroff, /sbin/reboot, /sbin/shutdown
+    ```
+
 [KIAUH]: https://github.com/dw-0/kiauh
 [Klipper]: https://www.klipper3d.org/
 [Moonraker]: https://github.com/Arksine/moonraker
