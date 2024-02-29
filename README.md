@@ -57,11 +57,11 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
    chmod +x ./Klipper-WS281x_LED_Status/klipper_ledstrip.py
    ```
    Enable the SPI communication by running `sudo raspi-config`. In the menu, select "3 Interface Options", then "I3 SPI" and set "Yes".  
-   Edit */boot/firmware/cmdline.txt*:
+   Edit */boot/cmdline.txt*:
    ```sh
    spidev.bufsiz=32768
    ```
-      Edit */boot/firmware/config.txt*:
+      Edit */boot/config.txt*:
    ```sh
    core_freq=500
    core_freq_min=500
