@@ -84,7 +84,7 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
    ```
    Then enable the service:
    ```sh
-   sudo systemctl daemon-reload
+   sudo systemctl daemon-reload && \
    sudo systemctl enable klipper-backup-on-boot.service
    ```
    
@@ -126,9 +126,9 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
    In the menu, set "Microcontroller Architecture" to "Linux process," then save and exit.  
    To build and install the new micro-controller code, run:
    ```sh
-   sudo usermod -a -G tty pi
-   sudo service klipper stop
-   make flash
+   sudo usermod -a -G tty pi && \
+   sudo service klipper stop && \
+   make flash && \
    sudo service klipper start
    ```
    
@@ -138,9 +138,32 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
    cd ender3pro && cp -r !(README.md) ~/
    ```
 
-10. Allow [Klipper] to perform host shutdown, run `sudo visudo` then append:
+10. In order to shutting the host down gracefully, first run `sudo visudo` then append:
     ```sh
     pi ALL=(ALL) NOPASSWD: /sbin/poweroff, /sbin/reboot, /sbin/shutdown
+    ```
+    Second, install `uhubctl` to handle USB powers:
+    ```sh
+    sudo apt install uhubctl -y
+    ```
+    Third, Create */etc/systemd/system/usb.service* file:
+    ```sh
+    [Unit]
+    Description=Cut off USB power upon shutdown or reboot.
+      
+    [Service]
+    Type=oneshot
+    RemainAfterExit=true
+    ExecStop=sudo uhubctl -a off -l 1-1
+    
+    [Install]
+    WantedBy=multi-user.target
+    ```
+    Then enable the service:
+    ```sh
+    sudo systemctl daemon-reload && \
+    sudo systemctl enable usb.service && \
+    sudo systemctl start usb.service
     ```
 
 [KIAUH]: https://github.com/dw-0/kiauh
