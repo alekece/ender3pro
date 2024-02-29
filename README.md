@@ -146,24 +146,25 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
     ```sh
     sudo apt install uhubctl -y
     ```
-    Third, Create */etc/systemd/system/usb.service* file:
+    Third, Create */etc/systemd/system/shutdown.service* file:
     ```sh
     [Unit]
-    Description=Cut off USB power upon shutdown or reboot
-      
+    Description= Graceful shutdown or reboot service
+   
     [Service]
     Type=oneshot
     RemainAfterExit=true
     ExecStop=sudo uhubctl -a off -l 1-1
-    
+    ExecStop=/home/pi/klippy-env/bin/python /home/pi/Klipper-WS281x_LED_Status/klipper_ledstrip.py 0 0 0
+   
     [Install]
     WantedBy=multi-user.target
     ```
-    Then enable the service:
+    Finally enable the service:
     ```sh
     sudo systemctl daemon-reload && \
-    sudo systemctl enable usb.service && \
-    sudo systemctl start usb.service
+    sudo systemctl enable shutdown.service && \
+    sudo systemctl start shutdown.service
     ```
 
 [KIAUH]: https://github.com/dw-0/kiauh
