@@ -149,7 +149,7 @@ This backup is provided by [klipper-backup](https://github.com/Staubgeborener/kl
     Third, Create */etc/systemd/system/usb.service* file:
     ```sh
     [Unit]
-    Description=Cut off USB power upon shutdown or reboot.
+    Description=Cut off USB power upon shutdown or reboot
       
     [Service]
     Type=oneshot
